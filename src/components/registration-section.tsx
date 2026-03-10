@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { RegistrationClosedModal } from "./registration-closed-modal";
 
 const RegistrationSection = React.memo(function RegistrationSection() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
 	return (
 		<section
 			id="register"
@@ -27,16 +30,17 @@ const RegistrationSection = React.memo(function RegistrationSection() {
 					video proof before <strong>March 8, 2026, 5:00 PM</strong>.
 				</p>
 
-				<a
-					href="https://forms.office.com/r/nMMTPg4Rua"
-					target="_blank"
-					rel="noopener noreferrer"
-					className="relative inline-block px-12 py-5 bg-yellow-400 text-black font-bold text-xl rounded-2xl transition-all duration-300 hover:scale-110 hover:bg-yellow-300 shadow-[0_10px_40px_rgba(250,204,21,0.35)]
+				<button
+					type="button"
+					onClick={() => setIsModalOpen(true)}
+					className="relative inline-block px-12 py-5 bg-yellow-400 text-black font-bold text-xl rounded-2xl transition-all duration-300 hover:scale-110 hover:bg-yellow-300 shadow-[0_10px_40px_rgba(250,204,21,0.35)] cursor-pointer
 						before:absolute before:inset-0 before:rounded-2xl before:bg-white/20 before:opacity-0 hover:before:opacity-100 before:blur-xl before:transition"
 				>
 					Register Your Team
-				</a>
+				</button>
 			</div>
+
+			<RegistrationClosedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 		</section>
 	);
 });

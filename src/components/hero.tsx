@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { RegistrationClosedModal } from "./registration-closed-modal";
 
 const Hero = React.memo(function Hero() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	return (
 		<section className="relative min-h-[100vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center overflow-hidden">
@@ -26,14 +28,13 @@ const Hero = React.memo(function Hero() {
 				</p>
 
 				<div className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-center animate-fade-in-up delay-300">
-					<a
-						href="https://forms.office.com/r/nMMTPg4Rua"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="px-8 py-4 bg-yellow-400 text-black font-bold rounded-2xl shadow-[0_10px_40px_rgba(250,204,21,0.35)] hover:shadow-[0_15px_50px_rgba(250,204,21,0.6)] hover:bg-yellow-300 hover:scale-110 transition-all duration-300 outline-none focus-visible:ring-4 ring-yellow-400/50 block"
+					<button
+						type="button"
+						onClick={() => setIsModalOpen(true)}
+						className="px-8 py-4 bg-yellow-400 text-black font-bold rounded-2xl shadow-[0_10px_40px_rgba(250,204,21,0.35)] hover:shadow-[0_15px_50px_rgba(250,204,21,0.6)] hover:bg-yellow-300 hover:scale-110 transition-all duration-300 outline-none focus-visible:ring-4 ring-yellow-400/50 block cursor-pointer"
 					>
 						Register Now
-					</a>
+					</button>
 					<a
 						href="#guidelines"
 						className="px-8 py-4 bg-transparent border border-zinc-700 bg-zinc-900/40 backdrop-blur-md text-white font-bold rounded-xl hover:bg-zinc-800 transition-all block"
@@ -64,7 +65,7 @@ const Hero = React.memo(function Hero() {
 				</div>
 			</div>
 
-
+			<RegistrationClosedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 		</section>
 	);
 });
